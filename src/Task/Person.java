@@ -3,16 +3,16 @@ package Task;
 import java.util.Scanner;
 
 public class Person {
-    String name;
-    int age;
+    protected String name;
+    protected int age;
 
-
-
-//    public static void main(String[] args){
-//        Scanner scanner=new Scanner(System.in);
-//        int pid = scanner.nextInt();
-//        System.out.println("Please enter the Pid: " + pid);
-//}
-
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    public void displayPersonInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
 
 }

@@ -3,28 +3,63 @@ package Task;
 import java.util.Scanner;
 
 public class Account {
-    private int balance=5000;
-    public int balance(){
-        return balance;
-    }
-    public void withdraw(int amt){
-        if(amt>balance){
-            System.out.println("Insufficient Balance ");
-        }
-        balance=balance-amt;
-    }
-    public void deposit(int amt){
-        if(amt<=0){
-            System.out.println("Enter valid Amount");
-        }
-        balance=balance+amt;
+    private double balance;
+
+    public Account() {
+        this.balance = 0.0;
     }
 
-    public static void main(String[] args){
-        Account act =new Account();
-        Scanner scanner=new Scanner(System.in);
-        int pid = scanner.nextInt();
-        System.out.println("Please enter the Amount: ");
-
+    public Account(double initialBalance) {
+        if (initialBalance >= 0) {
+            this.balance = initialBalance;
+        } else {
+            System.out.println("Initial balance cannot be negative.");
+            this.balance = 0.0;
+        }
     }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: $" + amount);
+        } else {
+            System.out.println("Deposit amount must be positive.");
+        }
+    }
+    public void withdraw(double amount) {
+        if (amount > 0) {
+            if (amount <= balance) {
+                balance -= amount;
+                System.out.println("Withdrew: $" + amount);
+            } else {
+                System.out.println("Insufficient funds.");
+            }
+        } else {
+            System.out.println("Withdrawal amount must be positive.");
+        }
+    }
+
+    public void displayBalance() {
+        System.out.println("Current balance: $" + balance);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Account myAccount = new Account();
+
+        myAccount.displayBalance();
+
+        System.out.print("Enter amount to deposit: ");
+        double depositAmount = scanner.nextDouble();
+        myAccount.deposit(depositAmount);
+        myAccount.displayBalance();
+
+        System.out.print("Enter amount to withdraw: ");
+        double withdrawAmount = scanner.nextDouble();
+        myAccount.withdraw(withdrawAmount);
+        myAccount.displayBalance();
+
+        scanner.close();
+}
+
 }
