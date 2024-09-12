@@ -6,11 +6,9 @@ import java.sql.SQLException;
 
 public class InsertEmployeeData {
         public static void main(String[] args) {
-
             String url = "jdbc:mysql://localhost:3306/yourDatabase";
             String username = "Bala";
             String password = "Password";
-
             String insertSQL = "INSERT INTO Employee (empno, ename, age, sal) VALUES (?, ?, ?, ?)";
 
             try (Connection conn = DriverManager.getConnection(url, username, password);
